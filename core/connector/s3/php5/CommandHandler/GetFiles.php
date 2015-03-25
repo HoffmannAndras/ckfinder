@@ -118,7 +118,8 @@ class CKFinder_Connector_CommandHandler_GetFiles extends CKFinder_Connector_Comm
                     // }
                     $oFileNode[$i] = new Ckfinder_Connector_Utils_XmlNode("File");
                     $oFilesNode->addChild($oFileNode[$i]);
-                    $oFileNode[$i]->addAttribute("name", CKFinder_Connector_Utils_FileSystem::convertToConnectorEncoding(CKFinder_Connector_Utils_Misc::mbBasename($file)));
+                    $filename = CKFinder_Connector_Utils_FileSystem::convertToConnectorEncoding(CKFinder_Connector_Utils_Misc::mbBasename($file));
+                    $oFileNode[$i]->addAttribute("name", $filename);
                     $oFileNode[$i]->addAttribute("date", @date("YmdHi", $filemtime));
                     if (!empty($_thumbServerPath) && preg_match(CKFINDER_REGEX_IMAGES_EXT, $filename)) {
                         if (file_exists($_thumbServerPath . $filename)) {
